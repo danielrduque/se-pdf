@@ -1,0 +1,13 @@
+streamlit>=1.40
+ollama>=0.4
+openai>=1.50
+pymupdf>=1.24
+numpy>=1.26
+faster-whisper>=1.0
+av>=14,<17
+opencv-python-headless>=4.9
+fastapi>=0.110
+uvicorn[standard]>=0.29
+python-multipart>=0.0.9
+psycopg[binary,pool]>=3.2
+huggingface_hub>=0.24

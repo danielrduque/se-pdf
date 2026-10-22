@@ -1,0 +1,24 @@
+# Base de datos del proyecto: PostgreSQL 17 con pgvector (búsqueda por similitud de embeddings).
+# Arranque:  docker compose up -d db      Parada:  docker compose stop db      (los datos viven en el volumen chatdd_pgdata)
+services:
+  db:
+    image: pgvector/pgvector:pg17
+    container_name: chatdd-db
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER:-chatdd}
+      POSTGRES_DB: ${POSTGRES_DB:-chatdd}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:?define POSTGRES_PASSWORD en .env}
+    ports:
+      - "127.0.0.1:${POSTGRES_PORT:-5434}:5432"  # solo accesible desde tu PC; 5432/5433 ya los usan tus otros Postgres
+    volumes:
+      - chatdd_pgdata:/var/lib/postgresql/data
+      - ./db/init.sql:/docker-entrypoint-initdb.d/init.sql:ro
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U $${POSTGRES_USER} -d $${POSTGRES_DB}"]
+      interval: 5s
+      timeout: 3s
+      retries: 10
+
+volumes:
+  chatdd_pgdata:

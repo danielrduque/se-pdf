@@ -1,0 +1,4 @@
+# Solo para generar la base de conocimiento de ejemplo (tools/make_sample_kb.py); la app no los necesita.
+-r requirements.txt
+reportlab>=4.0
+matplotlib>=3.8

@@ -1,0 +1,13 @@
+.env
+.venv/
+__pycache__/
+*.pyc
+data/
+.claude/
+# La carpeta de la base de conocimiento se versiona vacía; tus archivos no se suben
+base_conocimiento/*
+!base_conocimiento/.gitkeep
+web/node_modules/
+web/dist/
+tools/llama.cpp/
+tools/models/
